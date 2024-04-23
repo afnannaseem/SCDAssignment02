@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "test": "jest --passWithNoTests",
     "minify-css": "cleancss -o public/css/ha.min.css public/css/*.css",
-    "minify-js": "terser -o public/js/app.min.js --compress --mangle -- src/client/*.js", 
+    "minify-js": "terser -o public/js/app.min.js --compress --mangle -- src/*.js", 
     "build": "npm run minify-css && npm run minify-js"
   },
   "dependencies": {

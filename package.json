@@ -7,10 +7,7 @@
   "scripts": {
     "start": "node run.js",
     "lint": "eslint .",
-    "test": "jest --passWithNoTests",
-    "minify-css": "cleancss -o public/css/ha.min.css public/css/*.css",
-    "minify-js": "terser -o public/js/app.min.js --compress --mangle -- src/*.js", 
-    "build": "npm run minify-css && npm run minify-js"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",

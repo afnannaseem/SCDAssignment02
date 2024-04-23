@@ -4,34 +4,43 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  # Allows you to manually trigger the workflow from GitHub's UI
 
 jobs:
-  build-test-deploy:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      name: Check out repository code
+      - uses: actions/checkout@v3
+        name: Check out repository code
 
-    - uses: actions/setup-node@v3
-      name: Set up Node.js
-      with:
-        node-version: '20'  # Ensure this matches the version used for development
+      - uses: actions/setup-node@v3
+        name: Set up Node.js
+        with:
+          node-version: '20'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run linting
-      run: npm run lint
+      - name: Run linting
+        run: npm run lint
 
-    - name: Run tests
-      run: npm test
+      - name: Run tests
+        run: npm test
 
-    - name: Build the project
-      run: npm run build  # Replace this with your actual build command
+      - name: Build Project
+        run: npm run build  # You need to add a build script in your package.json
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build  # Replace with the directory of your build output
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: Check out repository code
+
+      - uses: actions/setup-node@v3
+        name: Set up Node.js
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public

@@ -8,7 +8,7 @@
     "start": "node run.js",
     "lint": "eslint .",
     "test": "jest --passWithNoTests",
-    "build": "cp -R src/* public/"
+    "build": "npx babel src -d dist"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
@@ -32,6 +32,9 @@
     "node": ">=12.10.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
     "clean-css-cli": "^5.6.3",
     "eslint": "^9.1.1",
     "globals": "^15.0.0",

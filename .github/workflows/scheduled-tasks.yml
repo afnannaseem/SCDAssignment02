@@ -1,8 +1,9 @@
 name: Scheduled Maintenance Tasks
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # Runs every day at midnight
+  push:
+    branches:
+      - main
 
 jobs:
   maintenance_job:

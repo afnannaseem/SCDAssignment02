@@ -1,0 +1,20 @@
+name: Scheduled Maintenance Tasks
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs every day at midnight
+
+jobs:
+  maintenance_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Replace with the version of Node.js you're using
+
+      - name: Run maintenance script
+        run: node ./scripts/maintenance.js
